@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  my-app:
+    image: nginx:alpine
+    build: .
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/usr/share/nginx/html
+    restart: always
+  
+  my-db:
+    image: redis:alpine
+    volumes:
+      - ./db_data:/data
