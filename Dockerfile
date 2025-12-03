@@ -1,5 +1,11 @@
-# 1. 베이스 이미지 가져오기 (가장 기본이 되는 웹 서버인 nginx를 사용)
-FROM nginx:latest
+FROM python:3.9-alpine
 
-# 2. 내가 만든 index.html 파일을 컨테이너 내부의 웹 서버 경로로 복사하기
-COPY index.html /usr/share/nginx/html/index.html
+WORKDIR /app
+
+COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt
+
+COPY . .
+
+CMD ["python", "app.py"]
+
