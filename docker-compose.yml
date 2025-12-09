@@ -2,15 +2,15 @@ version: '3.8'
 
 services:
   my-app:
-    build: .
     ports:
       - "5000:5000"
-    volumes:
-      - ./:/app
+    env_file:
+      - .env
     depends_on:
       - my-db
+    
   
   my-db:
     image: redis:alpine
-    volumes:
-      - ./db_data:/data
+    #volumes:
+     # - ./db_data:/data
