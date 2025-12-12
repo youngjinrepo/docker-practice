@@ -9,6 +9,7 @@ redis_port = int(os.getenv('REDIS_PORT', 6379))
 
 redis = Redis(host=redis_host, port=redis_port)
 
+
 @app.route('/')
 def hello():
     count = redis.incr('hits')
