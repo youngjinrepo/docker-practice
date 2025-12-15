@@ -29,4 +29,4 @@ jobs:
         context: .
         push: true
         # 👇 [중요] 여기에 본인 Docker Hub 이미지 주소를 적으세요!
-        tags: awdadawdargrg/my-flask-app:latest
+        tags: ${{ secrets.DOCKER_USERNAME }}/my-flask-app:latest
