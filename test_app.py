@@ -12,4 +12,4 @@ def test_homepage(client):
     """Test that the homepage loads correctly."""
     response = client.get('/')
     assert response.status_code == 200
-    assert b'Hello, World!' in response.data
+    assert b'Hello Docker' in response.data
