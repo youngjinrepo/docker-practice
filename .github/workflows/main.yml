@@ -10,7 +10,7 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest  # 깃허브가 제공하는 임시 컴퓨터(우분투)를 씁니다.
 
-    Serivices:
+    services:
       redis:
         image: redis:alpine
         ports:
