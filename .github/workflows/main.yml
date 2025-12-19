@@ -10,6 +10,17 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest  # 깃허브가 제공하는 임시 컴퓨터(우분투)를 씁니다.
 
+    Serivices:
+      redis:
+        image: redis:alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
     # 1. 깃허브에 올린 내 코드를 내려받는다
     - name: Checkout code
@@ -32,9 +43,11 @@ jobs:
         pip install -r requirements.txt
 
     - name: Run tests
+      env:
+        REDIS_HOST: localhost 
       run: |
         pytest
-        
+
     # 3. 도커 이미지를 빌드하고 푸시한다
     - name: Build and push
       uses: docker/build-push-action@v4
