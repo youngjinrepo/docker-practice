@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-gui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis-gui
+  template:
+    metadata:
+      labels:
+        app: redis-gui
+    spec:
+      containers:
+      - name: redis-gui
+        image: rediscommander/redis-commander:latest
+        env:
+        - name: REDIS_HOSTS
+          value: "redis"
+        ports:
+        - containerPort: 8081
+---
+apiVersion: v1 
+kind: Service
+metadata:
+  name: redis-gui-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: redis-gui
+  ports:
+  - protocol: TCP
+    port: 8081
+    targetPort: 8081

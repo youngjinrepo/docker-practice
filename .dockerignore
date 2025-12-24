@@ -1,0 +1,10 @@
+.git
+.gitignore
+venv/
+__pycache__/
+*.pyc
+.env
+docker-compose.yml
+Dockerfile
+k8s/
+nginx/
