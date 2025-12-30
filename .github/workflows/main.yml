@@ -4,7 +4,7 @@ name: Docker Image CI
 on:
   push:
     branches: [ "main" ]
-
+    tags: [ "v*.*.*" ]
 
 jobs:
   build-and-push:
@@ -25,6 +25,16 @@ jobs:
     # 1. 깃허브에 올린 내 코드를 내려받는다
     - name: Checkout code
       uses: actions/checkout@v3
+
+    - name: Docker Meta
+      id: meta
+      uses: docker/metadata-action@v4
+      with:
+        images: ${{ secrets.DOCKER_USERNAME }}/my-flask-app
+        tags: |
+          type=ref,event=branch
+          type=ref,event=tag
+          type=raw,value=latest,enabled={{is_default_branch}}
 
     # 2. Docker Hub에 로그인한다 (아까 등록한 비밀번호 사용)
     - name: Login to Docker Hub
@@ -55,4 +65,5 @@ jobs:
         context: .
         push: true
         # 👇 [중요] 여기에 본인 Docker Hub 이미지 주소를 적으세요!
-        tags: ${{ secrets.DOCKER_USERNAME }}/my-flask-app:latest
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
