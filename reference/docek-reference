@@ -1,0 +1,10 @@
+Dockerfile reference (https://docs.docker.com/reference/dockerfile/#overview)
+
+
+ADD : 파일 이동시 사용
+ARG : ?? 변수처럼 사용
+CMD : 명령 실행시 사용, 직접 명령어를 칠 수 있고 JSON 형태로도 사용 가능
+COPY : file을 container 내부로 복사할 때 사용
+RUN: Build 시 실행되는 명령어
+ENTRYPOINT : 컨테이너 실행 시 실행되는 명령어
+CMD : 컨테이너 실행 시 defult 값
