@@ -12,7 +12,12 @@ CMD : 컨테이너 실행 시 defult 값
 FROM : base image를 정한다, ARG만이 FROM 앞에 올 수있다.
 EXPOSE: Container가 외부와 통신할 포트와 프로토콜을 지정
 HEALTHCHECK : HEALTHCHECK를 함 방법, 주기, 재시도 등 설정하고 내부에 app의 설정이 존재해야함
-
+LABEL : imaage에 메타데이터를 추가 할 때 사용, 이미지 영향없이 오로지 정보만 추가 가능, 기존 이미지에서 정보 상속
+ONBUILD : 해당 명령어가 적힌 이미지가 아니라, 해당 이미지를 사용한 자식 이미지에서 BUILD 시 실행됨, 현재에 와서는 잘 안쓰고 멀티스테이지 빌드를 주로 사용
+SHELL : RUN, CMD, ENTRYPOINT 명령어가 실행될 쉘을 지정, 기본값은 ["/bin/sh", "-c"], Windows의 경우 ["cmd", "/S", "/C"]
+STOPSIGNAL : 컨테이너 종료 시그널을 지정, 기본값은 SIGTERM
+VOLUME : 컨테이너가 사용하는 볼륨을 지정, 호스트와 컨테이너 간의 데이터 공유에 사용
+WORKDIR : 이후 명령어가 실행될 작업 디렉토리를 설정, 디렉토리가 없으면 생성됨
 
 --------
 1. CPU의 코어의 수를 하이퍼 스레딩 기술로 논리적 코어 증가시킴
