@@ -1,0 +1,12 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: flask-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: flask-deploy    # 감시할 녀석 이름
+  minReplicas: 1          # 최소 1대 유지
+  maxReplicas: 10         # 최대 10대까지 증원
+  targetCPUUtilizationPercentage: 50  # CPU 50% 넘으면 출동!
