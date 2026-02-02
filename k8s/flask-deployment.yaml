@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: flask-app
-        image: awdadawdargrg/my-flask-app:healing
+        image: awdadawdargrg/my-flask-app:v2
         ports:
         - containerPort: 5000
         env: 
