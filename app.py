@@ -9,6 +9,7 @@ app = Flask(__name__)
 redis_host = os.getenv('REDIS_HOST', 'redis')
 # 연결 시도 (여기서는 연결만 맺고 실제 통신은 안 함)
 r = redis.Redis(host=redis_host, port=6379, socket_timeout=2)
+# login 
 
 @app.route('/')
 def hello():
